@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml (v0.4): repo-root metadata for this formalization,
+# following https://github.com/mathlib-initiative/formalization.yaml
+
+version: "v0.4"
+
+project:
+  name: "prime-counting"
+  description: >-
+    Planned Lean 4 formalization of the eventual prime counting bound π(x) ≤ 4x / (3 log x) of IUT IV,
+    Proposition 1.6, by integrating a PNT-strength development (PrimeNumberTheoremAnd) by require or upstreaming.
+    The repository is currently an empty scaffold: no definitions or theorems yet.
+  authors:
+    - "Claude (Anthropic)"
+    - "LANA Project"
+  responsible_maintainers:
+    - "Christian Merten"
+  license: "Apache-2.0"
+
+sources:
+  - title: "Inter-universal Teichmüller Theory IV: Log-volume Computations and Set-theoretic Foundations"
+    authors: ["Shinichi Mochizuki"]
+    id: "Publ. Res. Inst. Math. Sci. 57 (2021), 627-723"
+    type: "article"
+    location: "Proposition 1.6"
+    note: "Target statement, named in the README (the README has no sources section); nothing is formalised yet."
+
+related_formalizations:
+  - id: "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd"
+    relationship: "other"
+    note: "PNT-strength results outside Mathlib; planned to be integrated."
+  - id: "https://github.com/lana-agents/iut"
+    relationship: "other"
+    note: "No longer needed by iut, which uses the factor 3/2 proved from Mathlib's Chebyshev bound."
+
+classification:
+  arxiv: ["math.NT"]
+  msc2020: ["11N05"]
+
+status:
+  scope: "not started (scaffold only)"
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+  main_results: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["claude-opus-5-5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        orchestra for running the agents, taxis for project management, and Claude (Claude Code) as the
+        coding agent; Lean/Lake builds with `lake build --wfail`.
+      prompting_notes: >-
+        Human input consisted of high-level task descriptions and scope decisions.
+  notes: >-
+    Agents were run with orchestra; project management (issues, status) was done in taxis;
+    Claude was the coding agent.
+
+fidelity:
+  divergences: "None yet: nothing has been formalised."
+
+review:
+  status: "agent-reviewed"
+  reviewers: ["Claude (Anthropic)"]
+  notes: >-
+    The formalization has only been reviewed by Claude; it has not been reviewed by a human.
+    The repository is an empty scaffold (a placeholder module with no declarations), so there is
+    nothing to check yet.
+
+acknowledgements: "Built on Mathlib (Apache-2.0)."
