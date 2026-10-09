@@ -1,10 +1,27 @@
 # prime-counting
 
-PNT-strength prime counting bounds to discharge the PrimeCountingCertificate.
+The prime counting bound `π(x) ≤ 4x / (3 log x)` of IUT IV, Proposition 1.6.
+
+## Status
+
+**Not started.** The repository is the initial project scaffold (a single commit,
+2026-07-20). The library `PrimeCounting` contains only the placeholder module
+`PrimeCounting/Basic.lean`, which has no declarations: there are no definitions or theorems yet
+(and so no `sorry`, `axiom` or `admit`). Everything under *Goals* below is planned, not
+formalised.
+
+No lana-agents repository depends on this one: `iut` and its pinned lana-agents
+dependencies do not `require` it.
+
+`iut` no longer needs this repository. It uses Proposition 1.6 with the factor `3/2`
+instead of `4/3`, and that bound is proved from Mathlib's Chebyshev bound
+`θ(x) ≤ (log 4)·x`: `Iut.primeCountingHyp_holds` and `Iut.primeCountingBoundExplicit`
+(`iut/Iut/Implication/ChebyshevExplicit.lean`). The `4/3` bound remains open in the
+lana-agents repositories.
 
 ## Goals
 
-Discharge the `PrimeCountingCertificate` that IUT4 §1 uses to state Proposition 1.6 — the eventual bound
+Prove the bound of IUT IV Proposition 1.6 with the printed factor — the eventual bound
 
 ```
 π(x) ≤ 4x / (3 log x)
@@ -12,17 +29,18 @@ Discharge the `PrimeCountingCertificate` that IUT4 §1 uses to state Proposition
 
 Mathlib v4.32.0 only has Chebyshev-strength bounds, whose coefficient `log 4` exceeds the required `4/3`. PNT-strength results do exist in Lean outside Mathlib, notably `PrimeNumberTheoremAnd` (Kontorovich–Tao et al.).
 
-The task is to integrate that development — by `require` or by upstreaming — so that the certificate is discharged unconditionally.
-
-Per the project owner, `iut` itself only *states* the result; no proving effort happens there.
+The task is to integrate that development — by `require` or by upstreaming — so that the bound is proved unconditionally.
 
 ## Related repositories
 
-Discharges a certificate interface used by `iut`.
+No longer needed by `iut` (see *Status*). The exact `4/3` statement remains in `iut` only
+as the comparator challenge `Iut4Sec1.eventually_primeCounting_le_four_thirds`
+(`Comparator/Challenge.lean`), which is outside the `iut` library.
 
 ## Layout
 
-Lean 4 project pinned to `leanprover/lean4:v4.32.0` with Mathlib at `v4.32.0`.
+Lean 4 project pinned to `leanprover/lean4:v4.32.0` with Mathlib at `v4.32.0`
+(commit `81a5d25`), its only direct dependency.
 Library sources live under `PrimeCounting/`, and every file must be imported from
 the root module `PrimeCounting.lean`.
 
